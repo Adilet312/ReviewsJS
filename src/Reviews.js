@@ -1,6 +1,5 @@
 // import {Reviews} from './reviews.js';
 import './styles.css';
-import img from './assets/person-1.jpeg';
 const reviews = [
   {
     id: 1,
@@ -39,32 +38,35 @@ const reviews = [
       "Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ",
   },
 ];
+let currentItem = 0;
 
-function generateContent(){
-  let avatar = document.querySelector('.img-container');
-  let name = document.querySelector('.full-name');
-  let major = document.querySelector('.major');
-  let about = document.querySelector('.about');
-  /*child elements*/
-  let img = document.createElement('img');
-  img.className = "person-img";
-  img.src = `${reviews[0].img}`;
-  let h2 = document.createElement('h2');
-  h2.innerText = reviews[0].name;
-  let h1 = document.createElement('h1');
-  h1.innerText = reviews[0].job;
-  let p = document.createElement('p');
-  p.innerText = reviews[0].text;
-  avatar.appendChild(img);
-  name.appendChild(h2);
-  major.appendChild(h1);
-  about.appendChild(p);
+document.querySelector('.nextBtn').addEventListener('click',function(){
+  currentItem++;
+  currentItem < reviews.length ? generateContent(currentItem) : "";
+},false);
+document.querySelector('.prevBtn').addEventListener('click',function(){
+  currentItem--;
+  currentItem >= 0 ? generateContent(currentItem) : "";
+
+
+},false);
+
+
+window.addEventListener('DOMContentLoaded',function() {
+  generateContent(currentItem);
+},false);
+
+
+function generateContent(index){
+        let avatar = document.querySelector('.img-container img');
+        let name = document.querySelector('.full-name h2');
+        let major = document.querySelector('.major h1');
+        let about = document.querySelector('.about p');
+      /*child elements*/
+
+        avatar.className = "person-img";
+        avatar.src = `${reviews[index].img}`;
+        name.innerText = reviews[index].name;
+        major.innerText = reviews[index].job;
+        about.innerText = reviews[index].text;
 }
-generateContent();
-// (function imgFun(){
-//   let li = document.querySelector('li');
-//   let imgTag = document.createElement('img');
-//   imgTag.src = `${img}`;
-//   imgTag.className = "person-img";
-//   li.appendChild(imgTag);
-// })();
