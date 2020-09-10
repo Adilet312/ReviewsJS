@@ -1,4 +1,4 @@
-// import {Reviews} from './reviews.js';
+
 import './styles.css';
 const reviews = [
   {
@@ -51,7 +51,10 @@ document.querySelector('.prevBtn').addEventListener('click',function(){
 
 },false);
 
-
+document.querySelector('.genBtn').addEventListener('click',function(){
+  let index = Math.floor(Math.random()*reviews.length);
+  generateContent(index);
+},false);
 window.addEventListener('DOMContentLoaded',function() {
   generateContent(currentItem);
 },false);
